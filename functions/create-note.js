@@ -9,19 +9,19 @@ const CREATE_NOTE = `
   }
 `;
 
-exports.handler = async (event) => {
+exports.handler = async event => {
   const { text } = JSON.parse(event.body);
   const { data, errors } = await sendQuery(CREATE_NOTE, { text });
 
   if (errors) {
     return {
       statusCode: 500,
-      body: JSON.stringify(errors),
+      body: JSON.stringify(errors)
     };
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ newNote: data.createNote }),
+    body: JSON.stringify({ newNote: data.createNote })
   };
 };
