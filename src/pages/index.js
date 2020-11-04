@@ -16,6 +16,7 @@ export default () => {
     if (status != "loading") return;
     axios("/api/get-all-notes").then((result) => {
       if (canceled === true) return;
+
       if (result.status != 200) {
         console.error("Error loading notes");
         console.error(result);
@@ -24,6 +25,7 @@ export default () => {
       setNotes(result.data.notes);
       setStatus("loaded");
     });
+
     return () => {
       canceled = true;
     };
